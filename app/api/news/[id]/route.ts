@@ -7,7 +7,7 @@ interface Context {
   params: { id: string }
 }
 
-export async function PATCH(req: NextRequest, { params }: Context) {
+export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
   try {
     const id = Number(params.id)
     const { title, description } = await req.json()
