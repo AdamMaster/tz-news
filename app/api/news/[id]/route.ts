@@ -1,7 +1,7 @@
 import { prisma } from '@/prisma/prisma-client'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: { id: number } }) {
   try {
     const id = Number(params.id)
     if (isNaN(id)) {
