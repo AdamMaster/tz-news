@@ -1,12 +1,11 @@
 import { prisma } from '@/prisma/prisma-client'
+import { RouteModuleHandleContext } from 'next/dist/server/route-modules/route-module'
 import { NextRequest, NextResponse } from 'next/server'
 
-export const dynamic = 'force-dynamic'
-
-export async function PATCH(req: NextRequest, context: Promise<{ params: { id: string } }>) {
+export async function PATCH(req: NextRequest, context: RouteModuleHandleContext) {
   try {
-    const { params } = await context
-    const id = Number(params.id)
+    const { params } = await context // Ожидаем params
+    const id = Number(params!.id)
     const { title, description } = await req.json()
 
     const updatedNews = await prisma.news.update({
