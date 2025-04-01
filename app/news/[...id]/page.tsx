@@ -5,10 +5,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 export default async function NewsDetailsPage({ params: { id } }: { params: { id: string } }) {
-  if (!id || isNaN(Number(id))) {
-    return notFound()
-  }
-
   const newsItem = await prisma.news.findFirst({
     where: {
       id: Number(id)
