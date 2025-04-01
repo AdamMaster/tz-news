@@ -3,12 +3,9 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
-interface Context {
-  params: { id: string }
-}
-
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, context: Promise<{ params: { id: string } }>) {
   try {
+    const { params } = await context
     const id = Number(params.id)
     const { title, description } = await req.json()
 
