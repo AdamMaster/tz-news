@@ -1,9 +1,9 @@
 import { prisma } from '@/prisma/prisma-client'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string[] }> }) {
   try {
-    const id = Number(params.id)
+    const id = Number((await params).id)
     if (isNaN(id)) {
       return NextResponse.json({ message: 'Неверный ID' }, { status: 400 })
     }
