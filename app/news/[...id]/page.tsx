@@ -4,7 +4,7 @@ import { Button, Heading } from '@/shared/components/ui'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-export default async function NewsDetailsPage({ params: { id } }: { params: { id: string } }) {
+export default async function NewsDetailsPage({ params: id }: { params: Promise<{ id: string }> }) {
   const newsItem = await prisma.news.findFirst({
     where: {
       id: Number(id)
