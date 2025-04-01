@@ -4,6 +4,9 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
   try {
     const id = Number(params.id)
+    if (isNaN(id)) {
+      return NextResponse.json({ message: 'Неверный ID' }, { status: 400 })
+    }
     const { title, description } = await req.json()
 
     const updatedNews = await prisma.news.update({
