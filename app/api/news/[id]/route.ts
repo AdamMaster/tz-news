@@ -7,7 +7,17 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     if (isNaN(id)) {
       return NextResponse.json({ message: 'Неверный ID' }, { status: 400 })
     }
+
     const { title, description } = await req.json()
+
+    if (!title || !description) {
+      return NextResponse.json({ message: 'Отсутствуют обязательные поля' }, { status: 400 })
+    }
+
+    const newsItem = await prisma.news.findUnique({ where: { id } })
+    if (!newsItem) {
+      return NextResponse.json({ message: 'Новости с таким ID не найдены' }, { status: 404 })
+    }
 
     const updatedNews = await prisma.news.update({
       where: { id },
