@@ -1,11 +1,13 @@
 import { prisma } from '@/prisma/prisma-client'
-import { RouteModuleHandleContext } from 'next/dist/server/route-modules/route-module'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function PATCH(req: NextRequest, context: RouteModuleHandleContext) {
+export async function PATCH(req: NextRequest, context: { params: { id?: string } }) {
   try {
-    const { params } = await context // Ожидаем params
-    const id = Number(params!.id)
+    const id = context.params.id ? Number(context.params.id) : null
+    if (!id) {
+      return NextResponse.json({ message: 'Неверный ID' }, { status: 400 })
+    }
+
     const { title, description } = await req.json()
 
     const updatedNews = await prisma.news.update({
