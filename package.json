@@ -1,25 +1,53 @@
 {
-  "name": "tz-news",
+  "name": "my-next-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:studio": "prisma studio",
+    "prisma:push": "prisma db push",
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:reset": "prisma migrate reset",
+    "prisma:seed": "prisma db seed"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.0.0",
+    "@prisma/client": "^6.5.0",
+    "@radix-ui/react-slot": "^1.1.2",
+    "@tailwindcss/postcss": "^4.0.17",
+    "axios": "^1.8.4",
+    "bcryptjs": "^3.0.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.485.0",
+    "next": "15.2.4",
+    "next-auth": "^4.24.11",
+    "nextjs-toploader": "^3.8.16",
+    "postcss": "^8.5.3",
+    "prisma": "^6.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.2.4"
+    "react-hook-form": "^7.55.0",
+    "shadcn-ui": "^0.9.5",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss": "^4.1.0",
+    "zod": "^3.24.2",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "@eslint/eslintrc": "^3"
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
   }
 }
