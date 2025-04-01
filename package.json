@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "prisma:studio": "prisma studio",
     "prisma:push": "prisma db push",
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:reset": "prisma migrate reset",
-    "prisma:seed": "prisma db seed"
+    "prisma:seed": "prisma db seed",
+    "postinstall": "prisma generate"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
